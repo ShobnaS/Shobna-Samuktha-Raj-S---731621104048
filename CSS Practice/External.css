@@ -1,0 +1,10 @@
+.MyHeading2{
+    border:2px solid magenta;
+    text-align: center;
+    width:50%;
+    color:aquamarine;
+    background-color:crimson;
+    cursor:pointer;
+    width: 35%;
+
+}
