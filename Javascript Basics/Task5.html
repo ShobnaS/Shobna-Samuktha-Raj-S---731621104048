@@ -1,0 +1,32 @@
+<html>
+<body>
+<div id="demo"></div>
+<script>
+var str = " Hello World ";
+var str1 = "Hi";
+var str2 = "The cat is so cute.The cat loves to drink milk";
+var len = str.length;
+var ch = str.charAt(4);
+var sli = str.slice(2,7);
+var sub = str.substring(9);
+var subs = str.substr(7);
+var upper = str.toUpperCase();
+var lower = str.toLowerCase();
+var con = str.concat(str1);
+var tri = str.trim();
+var tri1 = str.trimStart();
+var tri2 = str.trimEnd();
+var rep = str.repeat(3);
+var repla = str1.replace("Hi","Thanks");
+var all = str2.replaceAll("cat","dog");
+var spli = str.split(" ");
+// document.getElementById("demo").innerHTML = len+"<br>";
+// document.getElementById("demo").innerHTML = ch+"<br>";
+// document.getElementById("demo").innerHTML = sli;
+var out = len+"<br>"+ch+"<br>"+sli+"<br>"+sub+"<br>"+subs+"<br>"+upper
+           +"<br>"+lower+"<br>"+con+"<br>"+tri+"<br>"+tri1+"<br>"+tri2
+           +"<br>"+rep+"<br>"+repla+"<br>"+all+"<br>"+spli;
+document.getElementById("demo").innerHTML = out;
+</script>
+</body>
+</html>

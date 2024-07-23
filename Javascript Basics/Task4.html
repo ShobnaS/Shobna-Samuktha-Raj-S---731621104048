@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <title>Web Page</title>
+        <script>
+          function star(){
+            let n = parseInt(document.getElementById("n").value);
+            let i,j;
+            let res="";
+             for(i=0;i<=n;i++){
+                for(j=0;j<=i-1;j++){
+                    res = res+"*  "; 
+                }
+                res = res+"<br>"; 
+            }
+            document.getElementById("ResultDiv").innerHTML = res; 
+        }
+    </script>
+    </head>
+<body>
+     Enter Number <input type="text" id="n" value="Enter the number" onfocus="this.value=''" onblur="star()"/>
+     <div id="ResultDiv"></div>
+</body>
+</html>

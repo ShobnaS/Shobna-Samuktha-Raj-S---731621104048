@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>Web Page</title>
+        <script>
+          function factorial(){
+            let n1 = parseInt(document.getElementById("n1").value);
+            let fact =1;
+            let i;
+            if(n1<=0){
+                document.write("0");
+            }
+            else{
+           for(i=1;i<=n1;i++){    
+                fact=fact*i; 
+                
+            }  
+        }
+            document.getElementById("ResultDiv").innerHTML=fact;
+          }
+        </script>
+    </head>
+<body>
+     Enter Number <input type="text" id="n1" value="Enter the number" onfocus="this.value=''" onblur="factorial()"/>
+     <br>
+    
+   <br>
+    <div id="ResultDiv">
+    </div>
+</body>
+</html>

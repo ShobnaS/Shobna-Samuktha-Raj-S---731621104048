@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <title>Alert Box</title>
+        <script>
+            function welcome(){
+                alert("Hi,Welcome")
+            }
+            function greeting(){
+            let name = prompt("Enter your Name");
+            alert("Welcome : "+name);
+            }
+            function leave(){
+                confirm("Do ypu want to leave the page");
+            }
+            </script>
+            </head>
+    <body onload="welcome()" onunload="leave()">
+        <button onclick="greeting()">Say Welcome</button>
+    </body>
+    </html>
