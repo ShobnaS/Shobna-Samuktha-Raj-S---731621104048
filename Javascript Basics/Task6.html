@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web Page</title>
+    <script>
+        function methods(){
+            let n1 = document.getElementById("n1").value;
+            let n2 = document.getElementById("n2").value;
+            let n3 = document.getElementById("n3").value;
+            let op = document.getElementById("op").value;
+            let result = "";
+            
+            if (op == "len") {
+                result = "Length: " + n1.length;
+            }
+            if (op == "ch") {
+                result = "charAt: " + n1.charAt(4);
+            }
+            if (op == "sli") {
+                result = "Slice: " + n1.slice(2, 7);
+            }
+            if (op == "sub") {
+                result = "SubString: " + n1.substring(9);
+            }
+            if (op == "ssub") {
+                result = "SubString: " + n1.substr(9);
+            }
+            if (op == "upper") {
+                result = "UpperCase: " + n1.toUpperCase();
+            }
+            if (op == "lower") {
+                result = "LowerCase: " + n1.toLowerCase();
+            }
+            if (op == "con") {
+                result = "Concatination: " + n1.concat(n2);
+            }
+            if (op == "tri") {
+                result = "Trim: " + n1.trim();
+            }
+            if (op == "tri1") {
+                result = "Trim Start: " +n1.trimStart();
+            }
+            if (op == "tri2") {
+                result = "Trim End: " +  n1.trimEnd();
+            }
+            if (op == "rep") {
+                result = "Repeat: " +n1.repeat(3);
+            }
+            if (op == "repl") {
+                result = "Replace: " +n1.replace("Hi","Thanks");
+            }
+            if (op == "all") {
+                result = "Replace All: " +  n3.replaceAll("Cat","Dog");
+            }
+            if (op == "spli") {
+                result = "Split: " + n1.split(" ");
+            }
+
+            document.getElementById("ResultDiv").innerHTML = result;
+        }
+    </script>
+</head>
+<body>
+    Enter String1: <input type="text" id="n1"/><br><br>
+    Enter String2: <input type="text" id="n2"/><br><br>
+    Enter String3: <input type="text" id="n3"/><br><br>
+    Select the Operation:<select id="op">
+        <option value="len">Length</option>
+        <option value="ch">CharAt</option>
+        <option value="sli">Slice</option>
+        <option value="sub">SubString</option>
+        <option value="ssub">SubString</option>
+        <option value="upper">Upper Case</option>
+        <option value="lower">Lower Case</option>
+        <option value="con">Concat</option>
+        <option value="tri">Trim</option>
+        <option value="tri1">Trim Start</option>
+        <option value="tri2">Trim End</option>
+        <option value="rep">Repeat</option>
+        <option value="repl">Repeat</option>
+        <option value="all">Replace All</option>
+        <option value="spli">Split</option>
+    </select>
+    <button onclick="methods()">METHOD</button><br>
+    <div id="ResultDiv"></div>
+</body>
+</html>
