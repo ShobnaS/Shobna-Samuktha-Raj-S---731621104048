@@ -3,19 +3,22 @@
     <title>Web Page</title>
     <script>
         function palindrome() {
-            let str = document.getElementById("str").value;
-            let isPalindrome = true;
-            for (let i=0,j=str.length-1;i<j;i++,j--) {
-                if (str.charAt(i) != str.charAt(j)) {
-                    isPalindrome = false;
-                    break;
-                }
-            }
-            if(isPalindrome) {
-                document.getElementById("ResultDiv").innerHTML ="Palindrome";
-            }else{
-                document.getElementById("ResultDiv").innerHTML ="Not Palindrome";
-            }
+             let str = document.getElementById("str").value;
+             let rev = str.split("").reverse().join("");
+          //   console.log(rev);
+            // let isPalindrome = true;
+            // for (let i=0,j=str.length-1;i<j;i++,j--) {
+            //     if (str.charAt(i) != str.charAt(j)) {
+            //         isPalindrome = false;
+            //         break;
+            //     }
+            // }
+            // if(isPalindrome) {
+                document.getElementById("ResultDiv").innerHTML =rev;
+        //     }else{
+        //         document.getElementById("ResultDiv").innerHTML ="Not Palindrome";
+        //     }
+        
         }
     </script>
 </head>
