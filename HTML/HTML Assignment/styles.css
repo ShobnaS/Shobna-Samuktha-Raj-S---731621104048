@@ -1,0 +1,204 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background: url('https://us.123rf.com/450wm/traviswolfe/traviswolfe1905/traviswolfe190500055/122778912-blurred-bix-box-store-supercenter-with-customers-shopping-for-home-goods.jpg?ver=6') no-repeat center center fixed; 
+    background-size: cover; /* Ensures the image covers the entire page */
+}
+
+/* Header */
+header {
+    background: rgba(0, 77, 153, 0.8); /* Semi-transparent background */
+    color: #fff;
+    padding: 2rem;
+    text-align: center;
+    border-bottom: 2px solid #0056b3;
+}
+
+.header-content h1 {
+    font-size: 2.5rem;
+}
+
+.header-content p {
+    font-size: 1.2rem;
+}
+
+/* Main Container */
+main {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.9); /* Semi-transparent background for readability */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Search and Filter */
+.search-filter {
+    margin-bottom: 2rem;
+}
+
+.search-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-container input[type="text"] {
+    flex: 1;
+    padding: 0.75rem;
+    margin-right: 0.5rem;
+    border: 2px solid #007bff;
+    border-radius: 4px;
+}
+
+.search-container select {
+    padding: 0.75rem;
+    border: 2px solid #007bff;
+    border-radius: 4px;
+    position: relative;
+    top:-3px;
+
+}
+
+/* Inventory Table */
+.inventory-table {
+    margin-bottom: 2rem;
+    background: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: #004d99;
+    color: #fff;
+}
+
+th, td {
+    padding: 0.75rem;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.sort-btn {
+    background: none;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Buttons */
+button {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1rem;
+    margin-right: 0.5rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+button.edit-btn {
+    background: #ffc107;
+}
+
+button.edit-btn:hover {
+    background: #e0a800;
+}
+
+button.delete-btn {
+    background: #dc3545;
+}
+
+button.delete-btn:hover {
+    background: #c82333;
+}
+
+button.prev-btn, button.next-btn {
+    background: #007bff;
+}
+
+button.prev-btn:hover, button.next-btn:hover {
+    background: #0056b3;
+}
+
+/* Form */
+form {
+    background: rgba(255, 255, 255, 0.9); 
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+input[type="text"], input[type="number"] {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+}
+
+button[type="submit"] {
+    background: #28a745;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button[type="submit"]:hover {
+    background: #218838;
+}
+
+.form-feedback {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #28a745;
+}
+
+/* Footer */
+footer {
+    background: rgba(0, 77, 153, 0.8); /* Semi-transparent background */
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+h2{
+    color: cadetblue;
+}
