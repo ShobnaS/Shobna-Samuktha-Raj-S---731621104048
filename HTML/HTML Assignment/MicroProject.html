@@ -5,24 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventory Management</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Example styling, adjust as needed */
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-        header { background-color: #333; color: white; padding: 1rem; text-align: center; }
-        .header-content { max-width: 1200px; margin: 0 auto; }
-        main { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
-        .form-group { margin-bottom: 1rem; }
-        label { display: block; margin-bottom: .5rem; }
-        input, select, button { padding: .5rem; font-size: 1rem; }
-        table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; }
-        th, td { border: 1px solid #ddd; padding: .5rem; text-align: left; }
-        th button { background: none; border: none; cursor: pointer; }
-        .pagination { margin: 1rem 0; }
-        .pagination button { margin: 0 .5rem; }
-        .form-feedback, .purchase-feedback { color: red; }
-        .purchase-summary { margin-top: 1rem; font-weight: bold; }
-        .purchase-items { margin-top: 1rem; }
-    </style>
 </head>
 <body>
     <header>
@@ -33,13 +15,11 @@
     </header>
     
     <main>
-        <!-- Existing Sections: Search, Filter, Inventory Table, and Add Item Form -->
-
-        <section class="search-filter">
-            <div class="search-container">
+        <section class="filter">
+            <div class="container">
                 <input type="text" id="search" placeholder="Search by item name or ID">
                 <select id="filter">
-                    <option value="">Filter by quantity</option>
+                    <option value="" ;">Filter by quantity</option>
                     <option value="low">Low stock</option>
                     <option value="medium">Medium stock</option>
                     <option value="high">High stock</option>
@@ -53,25 +33,45 @@
                 <table>
                     <thead>
                         <tr>
-                            <th><button class="sort-btn" data-sort="id">Item ID</button></th>
-                            <th><button class="sort-btn" data-sort="name">Item Name</button></th>
+                            <th><button class="sort-btn" >Item ID</button></th>
+                            <th><button class="sort-btn" >Item Name</button></th>
                             <th><button class="sort-btn" data-sort="quantity">Quantity</button></th>
                             <th><button class="sort-btn" data-sort="price">Price</button></th>
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody id="inventory-body">
-                        <!-- Inventory rows will be added here -->
+                    <tbody>
+                        <tr>
+                            <td>001</td>
+                            <td>Widget</td>
+                            <td>10</td>
+                            <td>$25.00</td>
+                            <td>
+                                <button class="edit-btn">Edit</button>
+                                <button class="delete-btn">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>002</td>
+                            <td>Gadget</td>
+                            <td>15</td>
+                            <td>$35.00</td>
+                            <td>
+                                <button class="edit-btn">Edit</button>
+                                <button class="delete-btn">Delete</button>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
-                <div class="pagination">
-                    <button class="prev-btn" onclick="prevPage()">Previous</button>
-                    <button class="next-btn" onclick="nextPage()">Next</button>
+                <div class="pagination"><br>
+                    <button class="prev-btn">Previous</button>
+                    <button class="next-btn">Next</button>
                 </div>
             </div>
         </section>
         
         <section class="add-item-form">
+           
             <form id="add-item-form">
                 <h2>Add New Item</h2>
                 <div class="form-group">
@@ -98,180 +98,8 @@
                 <p id="form-feedback" class="form-feedback"></p>
             </form>
         </section>
-        
-        <!-- Updated Section for Purchase -->
-        <section class="purchase-form">
-            <h2>Purchase Items</h2>
-            <form id="purchase-form">
-                <div id="purchase-items" class="purchase-items">
-                    <!-- Purchase items will be added here -->
-                </div>
-                <button type="submit" class="submit-btn">Calculate Total</button>
-                <p id="purchase-feedback" class="purchase-feedback"></p>
-            </form>
-            <div id="purchase-summary" class="purchase-summary">
-                <!-- Total bill and discount will be displayed here -->
-            </div>
-        </section>
     </main>
     
-    <script>
-        let inventory = [];
-        let currentPage = 1;
-        const itemsPerPage = 5;
-
-        // Handle form submission to add a new item
-        document.getElementById('add-item-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const id = document.getElementById('item-id').value;
-            const name = document.getElementById('item-name').value;
-            const quantity = parseInt(document.getElementById('quantity').value, 10);
-            const price = parseFloat(document.getElementById('price').value.replace('$', ''));
-
-            if (isNaN(quantity) || isNaN(price)) {
-                document.getElementById('form-feedback').textContent = 'Please enter valid quantity and price.';
-                return;
-            }
-
-            inventory.push({ id, name, quantity, price });
-            document.getElementById('form-feedback').textContent = 'Item added successfully!';
-            document.getElementById('add-item-form').reset();
-            renderTable();
-            populatePurchaseOptions();
-        });
-
-        function renderTable() {
-            const tbody = document.getElementById('inventory-body');
-            tbody.innerHTML = '';
-
-            const start = (currentPage - 1) * itemsPerPage;
-            const end = start + itemsPerPage;
-            const paginatedItems = inventory.slice(start, end);
-
-            paginatedItems.forEach(item => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${item.id}</td>
-                    <td>${item.name}</td>
-                    <td>${item.quantity}</td>
-                    <td>$${item.price.toFixed(2)}</td>
-                    <td>
-                        <button class="edit-btn" onclick="editItem('${item.id}')">Edit</button>
-                        <button class="delete-btn" onclick="deleteItem('${item.id}')">Delete</button>
-                    </td>
-                `;
-                tbody.appendChild(row);
-            });
-        }
-
-        function deleteItem(id) {
-            inventory = inventory.filter(item => item.id !== id);
-            renderTable();
-            populatePurchaseOptions();
-        }
-
-        function editItem(id) {
-            alert('Edit functionality not implemented.');
-        }
-
-        document.getElementById('search').addEventListener('input', renderTable);
-        document.getElementById('filter').addEventListener('change', renderTable);
-
-        document.querySelectorAll('.sort-btn').forEach(button => {
-            button.addEventListener('click', () => {
-                const sortKey = button.getAttribute('data-sort');
-                inventory.sort((a, b) => {
-                    if (sortKey === 'price') {
-                        return a[sortKey] - b[sortKey];
-                    }
-                    return a[sortKey].localeCompare(b[sortKey]);
-                });
-                renderTable();
-            });
-        });
-
-        function prevPage() {
-            if (currentPage > 1) {
-                currentPage--;
-                renderTable();
-            }
-        }
-
-        function nextPage() {
-            if (currentPage * itemsPerPage < inventory.length) {
-                currentPage++;
-                renderTable();
-            }
-        }
-
-        function populatePurchaseOptions() {
-            const purchaseItemsContainer = document.getElementById('purchase-items');
-            purchaseItemsContainer.innerHTML = '';
-
-            inventory.forEach(item => {
-                const div = document.createElement('div');
-                div.innerHTML = `
-                    <div class="form-group">
-                        <label for="purchase-item-${item.id}">${item.name} (ID: ${item.id})</label>
-                        <input type="hidden" name="purchase-item-id" value="${item.id}">
-                        <input type="number" id="purchase-quantity-${item.id}" name="purchase-quantity" min="1" max="${item.quantity}" placeholder="Quantity" required>
-                    </div>
-                `;
-                purchaseItemsContainer.appendChild(div);
-            });
-        }
-
-        document.getElementById('purchase-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const formData = new FormData(this);
-            const purchaseItems = {};
-
-            // Collect purchase items and their quantities
-            for (let entry of formData.entries()) {
-                if (entry[0] === 'purchase-item-id') {
-                    purchaseItems[entry[1]] = 0;
-                } else if (entry[0] === 'purchase-quantity') {
-                    const id = [...formData.keys()].find(k => k.startsWith('purchase-quantity') && formData.get(k) === entry[1]).split('-').pop();
-                    purchaseItems[id] = parseInt(entry[1], 10);
-                }
-            }
-
-            let totalBill = 0;
-            let discountAmount = 0;
-
-            // Calculate total and apply discount
-            for (const id in purchaseItems) {
-                const item = inventory.find(i => i.id === id);
-                if (item) {
-                    const quantity = purchaseItems[id];
-                    if (quantity > item.quantity) {
-                        document.getElementById('purchase-feedback').textContent = 'Quantity exceeds available stock.';
-                        return;
-                    }
-                    item.quantity -= quantity;  // Update inventory quantity
-                    const itemTotal = item.price * quantity;
-                    totalBill += itemTotal;
-                }
-            }
-
-            const discount = parseFloat(prompt("Enter discount percentage (0-100):")) || 0;
-            discountAmount = (totalBill * discount) / 100;
-            totalBill -= discountAmount;
-
-            document.getElementById('purchase-feedback').textContent = '';
-            document.getElementById('purchase-summary').innerHTML = `
-                <p>Total Before Discount: $${(totalBill + discountAmount).toFixed(2)}</p>
-                <p>Discount: $${discountAmount.toFixed(2)} (${discount}%)</p>
-                <p><strong>Total Bill: $${totalBill.toFixed(2)}</strong></p>
-            `;
-            renderTable(); // Refresh table to show updated inventory
-            populatePurchaseOptions(); // Refresh purchase options
-        });
-
-        renderTable();
-        populatePurchaseOptions();
-    </script>
+    
 </body>
 </html>
