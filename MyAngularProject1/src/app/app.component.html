@@ -1,0 +1,38 @@
+  <!--<h1>Interpolation</h1>
+  <br>
+ <b>
+  name : {{name}}
+  <br> age:{{age}}
+  <br>email:<input type="text" value="{{email}}"/>
+  <h3>Property Binding</h3>
+  <br>Name<input type="text" [value]="name"/>
+  <br>Age<input type="text" [value]="age"/>
+  <br>Email<input type="text" [value]="email"/>
+  <h3>Event Binding</h3>
+
+ <br><img src="imagePath" width="300" height="200"/>
+ <br><br>
+ fname:<input type="text" [(ngModel)]="fname"/>
+<br><br>
+<h3>Welcome{{fname}}</h3>
+  
+ </b>-->
+ <h1 [ngClass]="myClass">Structural and Attribute Directive</h1>
+ <br>
+ <button (click)="changeFlag()">Show or Hide Div</button>
+ <br><br>
+ <div *ngIf="flag" [ngStyle]="myStyle">
+   <br>
+   <ul>
+    <li *ngFor = "let vec of vehicles" (click)="setSelectedItem(vec)">{{vec}}</li>
+   </ul>
+   <br>
+   <b>You have selected : {{selectedVehicle}}</b>
+   <br>
+   <div [ngSwitch] =" selectedVehicle">
+      <font color ="green" *ngSwitchCase="'two Wheeler'">Bike</font>
+      <font color ="green" *ngSwitchCase="'three wheeler'">Auto</font>
+      <font color ="green" *ngSwitchCase="'Four wheeler'">Car</font>
+   </div><br>
+   <button (click)="changeStyle()">Change Style</button>
+ </div>
