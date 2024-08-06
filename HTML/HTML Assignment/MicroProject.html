@@ -15,11 +15,11 @@
     </header>
     
     <main>
-        <section class="filter">
-            <div class="container">
+        <section class="search-filter">
+            <div class="search-container">
                 <input type="text" id="search" placeholder="Search by item name or ID">
                 <select id="filter">
-                    <option value="" ;">Filter by quantity</option>
+                    <option value="" style="position: absolute;top:-50px">Filter by quantity</option>
                     <option value="low">Low stock</option>
                     <option value="medium">Medium stock</option>
                     <option value="high">High stock</option>
@@ -33,8 +33,8 @@
                 <table>
                     <thead>
                         <tr>
-                            <th><button class="sort-btn" >Item ID</button></th>
-                            <th><button class="sort-btn" >Item Name</button></th>
+                            <th><button class="sort-btn" data-sort="id">Item ID</button></th>
+                            <th><button class="sort-btn" data-sort="name">Item Name</button></th>
                             <th><button class="sort-btn" data-sort="quantity">Quantity</button></th>
                             <th><button class="sort-btn" data-sort="price">Price</button></th>
                             <th>Actions</th>
@@ -100,6 +100,9 @@
         </section>
     </main>
     
+    <footer>
+        <p>&copy; 2024 Inventory Management System</p>
+    </footer>
     
 </body>
 </html>

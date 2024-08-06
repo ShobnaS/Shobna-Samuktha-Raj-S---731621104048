@@ -1,0 +1,81 @@
+<html>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+</head>
+<body>
+<div class="Backgrnd">
+<h1 [ngClass] ="myClass">INVENTORY MANAGEMENT</h1>
+<p  [ngClass] ="myClass">Your one-stop solution for managing inventory</p><br><br>
+<hr>
+</div>
+<br>
+<b> Search</b> : <input type="text" placeholder="      Search the Products     " [value]="search" style="width: 800px;height:30px;border: 2px solid black;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Filter By:
+<select>  <b>FilterBy :</b> 
+  <option>Low Cost</option>
+  <option>Discounts </option>
+  <option>HighCost</option>
+  <option>Medium Cost</option>
+</select>
+<br><br>
+<form #myForm="ngForm">
+<div class="Hello">
+<h2 [ngClass] ="myClass1"><br>CURRENT INVENTORY</h2>
+<table border="2px"   [ngStyle]="myStyle">
+   <tr>
+    <th>Item Name</th>
+    <th>Item Id</th>
+    <th>Item Quantity</th>
+    <th>Price</th>
+    <th>Actions</th>
+   </tr><br> 
+   <tr>
+    <td  [ngClass] ="myClass2"><input type="text" 
+      class="form-control" 
+      name="itemName" 
+      #empId="ngModel" ngModel style="width: 50px;"/></td>
+    <td [ngClass] ="myClass2"><input type="text" 
+      class="form-control" 
+      name="itemId" 
+      #empId="ngModel" ngModel style="width: 50px;"/></td>
+    <td [ngClass] ="myClass2"><input type="text" 
+      class="form-control" 
+      name="itemQuantity" 
+      #empId="ngModel" ngModel style="width: 50px;"/></td>
+    <td [ngClass] ="myClass2"><input type="text" 
+      class="form-control" 
+      name="itemPrice" 
+      #empId="ngModel" ngModel style="width: 50px;"/></td>
+    <td style="position: absolute;margin-left: 30px;"><button type="button" class="edit-btn" (click)="editManage(myForm.value)"><b style="color:blue;">Edit</b></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button type="button" class="delete-btn"><b style="color:blue;">Delete</b></button></td>
+   </tr><br>
+   <tr>
+    <td  [ngClass] ="myClass2">002</td>
+    <td [ngClass] ="myClass2">Gadget</td>
+    <td [ngClass] ="myClass2">10</td>
+    <td [ngClass] ="myClass2">$45</td>
+    <td style="position: absolute;margin-left: 30px;"><button class="btn btn-success" (click)="editManage(myForm.value)">
+      Insert 
+  </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" class="delete-btn"><b style="color:blue;">Delete</b></button></td>
+   </tr>
+</table><br>
+  <button style="width: 10%;height:30px" class="prev-btn"><b style="color: white;">Previous</b></button>&nbsp;&nbsp;&nbsp;
+
+  <button style="width: 10%;height:30px" class="next-btn"><b style="color: white;">Next</b></button>
+</div>
+<div class="Ground">
+<br><h2 [ngClass] ="myClass1">ADD NEW ITEM</h2>
+<h3>&nbsp;&nbsp;&nbsp;&nbsp;Item ID:</h3>
+<input type="text" style="width: 1200px;height: 30px;border: 2px solid gainsboro;margin-left: 20px;" required/><br>
+<h3>&nbsp;&nbsp;&nbsp;&nbsp;Item Name:</h3>
+<input type="text" style="width: 1200px;height: 30px;border: 2px solid gainsboro;margin-left: 20px;"/>
+<h3>&nbsp;&nbsp;&nbsp;&nbsp;Quantity:</h3>
+<input type="text" style="width: 1200px;height: 30px;border: 2px solid gainsboro;margin-left: 20px;"/><br>
+<h3>&nbsp;&nbsp;&nbsp;&nbsp;Price:</h3>
+<input type="text" style="width: 1200px;height: 30px;border: 2px solid gainsboro;margin-left: 20px;"/><br>
+<br>
+<button style="width: 10%;height:30px" class="add-item-form"><b style="color: white;">Add</b></button>&nbsp;&nbsp;&nbsp;
+</div>
+</form>
+</body>
+</html>

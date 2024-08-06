@@ -1,0 +1,17 @@
+{
+    "employees": [
+      {
+        "itemName": "ShobnaS",
+        "id": "5400",
+        "itemQuantity": "50",
+        "itemPrice" : "2000"
+      
+      },
+      {
+        "itemName": "Shobna",
+        "id": "6400",
+        "itemQuantity": "30",
+        "itemPrice" : "3000"
+      }
+    ]
+}

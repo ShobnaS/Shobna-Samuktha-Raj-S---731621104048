@@ -1,0 +1,62 @@
+.MyClass1{
+    color: blue;
+    text-align: center;
+    background: pink;
+}
+.MyClass2{
+    color : cadetblue;
+    position: relative;
+   left: 30px;
+}
+.Hello{
+    background-color:azure;
+    height: 350px;
+}
+.MyClass3{
+    text-align: center;
+}
+.Backgrnd{
+    background-color: pink;
+    position: relative;
+    top:-20px;
+}
+button.edit-btn{
+  background: yellow;
+}
+button.edit-btn:hover{
+    background: green;
+  }
+button.delete-btn{
+    background:lightcoral;
+  }
+button.delete-btn:hover{
+      background: green;
+    }
+button.prev-btn{
+    background: dodgerblue;
+    border: none;
+    border-radius: 25px;
+}
+button.prev-btn:hover{
+    background: lavenderblush;
+    border: none;
+    border-radius: 25px;
+}
+button.next-btn{
+    background: dodgerblue;
+    border: none;
+    border-radius: 25px;
+}
+button.next-btn:hover{
+    background: lavenderblush;
+    border: none;
+    border-radius: 25px;
+}
+button.add-item-form{
+    position: relative;
+    margin-left: 30px;
+    background-color: green;
+}
+.Ground{
+    background-color: antiquewhite;
+}
