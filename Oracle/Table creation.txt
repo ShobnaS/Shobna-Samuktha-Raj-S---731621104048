@@ -1,0 +1,540 @@
+create table tbl_employee (eid number(5),ename varchar2(20),esalary number(5));
+desc tbl_employee;
+insert into tbl_employee values(101,'Shobna',2000);
+insert into tbl_employee values(102,'Samuktha',3000);
+insert into tbl_employee values(103,'Raj',4000);
+insert into tbl_employee values(104,'Shobhika',5000);
+commit;
+select *from tbl_employee;
+select eid,esalary from tbl_employee;
+insert into tbl_employee values(101,'Davasri',6000);
+select *from tbl_employee;
+select distinct eid from tbl_employee;
+select *from tbl_employee where eid = 101;
+select *from tbl_employee where ename = 'Shobna';
+select *from tbl_employee where eid != 101;
+select *from tbl_employee where eid <> 101;
+select *from tbl_employee where esalary >= 3000;
+update tbl_employee set esalary = 7000 where eid = 102;
+select *from tbl_employee;
+update tbl_employee set esalary = 7000 ename ='shobna'where eid = 102;
+select *from tbl_employee;
+delete *from tbl_employee where eid = 101;
+
+
+
+
+
+SQL*Plus: Release 11.2.0.2.0 Production on Fri Aug 9 14:12:00 2024
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+SQL> connect system
+Enter password:
+Connected.
+SQL> create table agents(Agent_Code number , Agent_Name varchar2(20),Working_Area varchar2(20));
+
+Table created.
+
+SQL> insert into agents values(A101,agent1,chennai);
+insert into agents values(A101,agent1,chennai)
+                                      *
+ERROR at line 1:
+ORA-00984: column not allowed here
+
+
+SQL> insert into agents values(A101,'agent1','chennai');
+insert into agents values(A101,'agent1','chennai')
+                          *
+ERROR at line 1:
+ORA-00984: column not allowed here
+
+
+SQL> create table agents(Agent_Code varchar2(20) , Agent_Name varchar2(20),Working_Area varchar2(20));
+create table agents(Agent_Code varchar2(20) , Agent_Name varchar2(20),Working_Area varchar2(20))
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+SQL> create table agent(Agent_Code varchar2(20) , Agent_Name varchar2(20),Working_Area varchar2(20));
+
+Table created.
+
+SQL> insert into agents values('A101','agent1','chennai');
+insert into agents values('A101','agent1','chennai')
+                          *
+ERROR at line 1:
+ORA-01722: invalid number
+
+
+SQL> insert into agent values('A101','agent1','chennai');
+
+1 row created.
+
+SQL> insert into agent values('A102','agent2','chennai');
+
+1 row created.
+
+SQL> insert into agent values('A103','agent3','bangalore');
+
+1 row created.
+
+SQL> insert into agent values('A104','agent4','bangalore');
+
+1 row created.
+
+SQL> create table customers(Customer_Code varchar2(20) , Customer_Name varchar2(20),CustomerWorking_Area varchar2(20));
+
+Table created.
+
+SQL> insert into customers values('C101','customer1','chennai');
+
+1 row created.
+
+SQL> insert into customers values('C102','customer2','chennai');
+
+1 row created.
+
+SQL> insert into customers values('C103','customer3','chennai');
+
+1 row created.
+
+SQL> insert into customers values('C104','customer4','bangalore');
+
+1 row created.
+
+SQL> insert into customers values('C105','customer5','bangalore');
+
+1 row created.
+
+SQL> select *from agent;
+
+AGENT_CODE           AGENT_NAME           WORKING_AREA
+-------------------- -------------------- --------------------
+A101                 agent1               chennai
+A102                 agent2               chennai
+A103                 agent3               bangalore
+A104                 agent4               bangalore
+
+SQL> select *from customers;
+
+CUSTOMER_CODE        CUSTOMER_NAME        CUSTOMERWORKING_AREA
+-------------------- -------------------- --------------------
+C101                 customer1            chennai
+C102                 customer2            chennai
+C103                 customer3            chennai
+C104                 customer4            bangalore
+C105                 customer5            bangalore
+
+SQL> select a.agent_name,c.customer_name,c.customerworking_area from agent a join customers c on a.working_area = customerworking_area;
+
+AGENT_NAME           CUSTOMER_NAME        CUSTOMERWORKING_AREA
+-------------------- -------------------- --------------------
+agent2               customer1            chennai
+agent1               customer1            chennai
+agent2               customer2            chennai
+agent1               customer2            chennai
+agent2               customer3            chennai
+agent1               customer3            chennai
+agent4               customer4            bangalore
+agent3               customer4            bangalore
+agent4               customer5            bangalore
+agent3               customer5            bangalore
+
+10 rows selected.
+
+SQL> select agent.agent_name,customers.customer_name,customers.customerworking_area from agent join customers on agent.working_area = customerworking_area;
+
+AGENT_NAME           CUSTOMER_NAME        CUSTOMERWORKING_AREA
+-------------------- -------------------- --------------------
+agent2               customer1            chennai
+agent1               customer1            chennai
+agent2               customer2            chennai
+agent1               customer2            chennai
+agent2               customer3            chennai
+agent1               customer3            chennai
+agent4               customer4            bangalore
+agent3               customer4            bangalore
+agent4               customer5            bangalore
+agent3               customer5            bangalore
+
+10 rows selected.
+
+SQL> select agent.agent_name,customers.customer_name,customers.customerworking_area from agent join customers on agent.working_area <> customerworking_area;
+
+AGENT_NAME           CUSTOMER_NAME        CUSTOMERWORKING_AREA
+-------------------- -------------------- --------------------
+agent1               customer4            bangalore
+agent1               customer5            bangalore
+agent2               customer4            bangalore
+agent2               customer5            bangalore
+agent3               customer1            chennai
+agent3               customer2            chennai
+agent3               customer3            chennai
+agent4               customer1            chennai
+agent4               customer2            chennai
+agent4               customer3            chennai
+
+10 rows selected.
+
+SQL> insert into agent values('A105','agent5','new york');
+
+1 row created.
+
+SQL> insert into customers values('C106','customer6','delhi');
+
+1 row created.
+
+SQL> select *from agent;
+
+AGENT_CODE           AGENT_NAME           WORKING_AREA
+-------------------- -------------------- --------------------
+A101                 agent1               chennai
+A102                 agent2               chennai
+A103                 agent3               bangalore
+A104                 agent4               bangalore
+A105                 agent5               new york
+
+SQL> select *from customers;
+
+CUSTOMER_CODE        CUSTOMER_NAME        CUSTOMERWORKING_AREA
+-------------------- -------------------- --------------------
+C101                 customer1            chennai
+C102                 customer2            chennai
+C103                 customer3            chennai
+C104                 customer4            bangalore
+C105                 customer5            bangalore
+C106                 customer6            delhi
+
+6 rows selected.
+
+SQL> select *from agent left outer join customers on agent.working_area = customers.customerworking_area;
+
+AGENT_CODE           AGENT_NAME           WORKING_AREA
+-------------------- -------------------- --------------------
+CUSTOMER_CODE        CUSTOMER_NAME        CUSTOMERWORKING_AREA
+-------------------- -------------------- --------------------
+A102                 agent2               chennai
+C101                 customer1            chennai
+
+A101                 agent1               chennai
+C101                 customer1            chennai
+
+A102                 agent2               chennai
+C102                 customer2            chennai
+
+
+AGENT_CODE           AGENT_NAME           WORKING_AREA
+-------------------- -------------------- --------------------
+CUSTOMER_CODE        CUSTOMER_NAME        CUSTOMERWORKING_AREA
+-------------------- -------------------- --------------------
+A101                 agent1               chennai
+C102                 customer2            chennai
+
+A102                 agent2               chennai
+C103                 customer3            chennai
+
+A101                 agent1               chennai
+C103                 customer3            chennai
+
+
+AGENT_CODE           AGENT_NAME           WORKING_AREA
+-------------------- -------------------- --------------------
+CUSTOMER_CODE        CUSTOMER_NAME        CUSTOMERWORKING_AREA
+-------------------- -------------------- --------------------
+A104                 agent4               bangalore
+C104                 customer4            bangalore
+
+A103                 agent3               bangalore
+C104                 customer4            bangalore
+
+A104                 agent4               bangalore
+C105                 customer5            bangalore
+
+
+AGENT_CODE           AGENT_NAME           WORKING_AREA
+-------------------- -------------------- --------------------
+CUSTOMER_CODE        CUSTOMER_NAME        CUSTOMERWORKING_AREA
+-------------------- -------------------- --------------------
+A103                 agent3               bangalore
+C105                 customer5            bangalore
+
+A105                 agent5               new york
+
+
+
+11 rows selected.
+
+SQL> alter table agent modify agent_code varchar2(5);
+
+Table altered.
+
+SQL> alter table agent modify customer_code varchar2(5);
+alter table agent modify customer_code varchar2(5)
+                         *
+ERROR at line 1:
+ORA-00904: "CUSTOMER_CODE": invalid identifier
+
+
+SQL> alter table customers modify customer_code varchar2(5);
+
+Table altered.
+
+SQL> alter table customers modify customer_name varchar2(9);
+
+Table altered.
+
+SQL> alter table customers modify customerworking_area varchar2(9);
+
+Table altered.
+
+SQL> alter table agent modify agent_name varchar2(9);
+
+Table altered.
+
+SQL> alter table agent modify working_area varchar2(9);
+
+Table altered.
+
+SQL> select *from agent;
+
+AGENT AGENT_NAM WORKING_A
+----- --------- ---------
+A101  agent1    chennai
+A102  agent2    chennai
+A103  agent3    bangalore
+A104  agent4    bangalore
+A105  agent5    new york
+
+SQL> select *from customers;
+
+CUSTO CUSTOMER_ CUSTOMERW
+----- --------- ---------
+C101  customer1 chennai
+C102  customer2 chennai
+C103  customer3 chennai
+C104  customer4 bangalore
+C105  customer5 bangalore
+C106  customer6 delhi
+
+6 rows selected.
+
+SQL> select *from agent left outer join customers on agent.working_area = customers.customerworking_area;
+
+AGENT AGENT_NAM WORKING_A CUSTO CUSTOMER_ CUSTOMERW
+----- --------- --------- ----- --------- ---------
+A102  agent2    chennai   C101  customer1 chennai
+A101  agent1    chennai   C101  customer1 chennai
+A102  agent2    chennai   C102  customer2 chennai
+A101  agent1    chennai   C102  customer2 chennai
+A102  agent2    chennai   C103  customer3 chennai
+A101  agent1    chennai   C103  customer3 chennai
+A104  agent4    bangalore C104  customer4 bangalore
+A103  agent3    bangalore C104  customer4 bangalore
+A104  agent4    bangalore C105  customer5 bangalore
+A103  agent3    bangalore C105  customer5 bangalore
+A105  agent5    new york
+
+11 rows selected.
+
+SQL> select *from agent right outer join customers on agent.working_area = customers.customerworking_area;
+
+AGENT AGENT_NAM WORKING_A CUSTO CUSTOMER_ CUSTOMERW
+----- --------- --------- ----- --------- ---------
+A101  agent1    chennai   C103  customer3 chennai
+A101  agent1    chennai   C102  customer2 chennai
+A101  agent1    chennai   C101  customer1 chennai
+A102  agent2    chennai   C103  customer3 chennai
+A102  agent2    chennai   C102  customer2 chennai
+A102  agent2    chennai   C101  customer1 chennai
+A103  agent3    bangalore C105  customer5 bangalore
+A103  agent3    bangalore C104  customer4 bangalore
+A104  agent4    bangalore C105  customer5 bangalore
+A104  agent4    bangalore C104  customer4 bangalore
+                          C106  customer6 delhi
+
+11 rows selected.
+
+SQL> select *from agent full outer join customers on agent.working_area = customers.customerworking_area;
+
+AGENT AGENT_NAM WORKING_A CUSTO CUSTOMER_ CUSTOMERW
+----- --------- --------- ----- --------- ---------
+A102  agent2    chennai   C101  customer1 chennai
+A101  agent1    chennai   C101  customer1 chennai
+A102  agent2    chennai   C102  customer2 chennai
+A101  agent1    chennai   C102  customer2 chennai
+A102  agent2    chennai   C103  customer3 chennai
+A101  agent1    chennai   C103  customer3 chennai
+A104  agent4    bangalore C104  customer4 bangalore
+A103  agent3    bangalore C104  customer4 bangalore
+A104  agent4    bangalore C105  customer5 bangalore
+A103  agent3    bangalore C105  customer5 bangalore
+                          C106  customer6 delhi
+
+AGENT AGENT_NAM WORKING_A CUSTO CUSTOMER_ CUSTOMERW
+----- --------- --------- ----- --------- ---------
+A105  agent5    new york
+
+12 rows selected.
+
+SQL> select *from agent full join customers on agent.working_area = customers.customerworking_area;
+
+AGENT AGENT_NAM WORKING_A CUSTO CUSTOMER_ CUSTOMERW
+----- --------- --------- ----- --------- ---------
+A102  agent2    chennai   C101  customer1 chennai
+A101  agent1    chennai   C101  customer1 chennai
+A102  agent2    chennai   C102  customer2 chennai
+A101  agent1    chennai   C102  customer2 chennai
+A102  agent2    chennai   C103  customer3 chennai
+A101  agent1    chennai   C103  customer3 chennai
+A104  agent4    bangalore C104  customer4 bangalore
+A103  agent3    bangalore C104  customer4 bangalore
+A104  agent4    bangalore C105  customer5 bangalore
+A103  agent3    bangalore C105  customer5 bangalore
+                          C106  customer6 delhi
+
+AGENT AGENT_NAM WORKING_A CUSTO CUSTOMER_ CUSTOMERW
+----- --------- --------- ----- --------- ---------
+A105  agent5    new york
+
+12 rows selected.
+
+SQL> select *from agent right outer join customers on agent.working_area = customers.customerworking_area;
+
+AGENT AGENT_NAM WORKING_A CUSTO CUSTOMER_ CUSTOMERW
+----- --------- --------- ----- --------- ---------
+A101  agent1    chennai   C103  customer3 chennai
+A101  agent1    chennai   C102  customer2 chennai
+A101  agent1    chennai   C101  customer1 chennai
+A102  agent2    chennai   C103  customer3 chennai
+A102  agent2    chennai   C102  customer2 chennai
+A102  agent2    chennai   C101  customer1 chennai
+A103  agent3    bangalore C105  customer5 bangalore
+A103  agent3    bangalore C104  customer4 bangalore
+A104  agent4    bangalore C105  customer5 bangalore
+A104  agent4    bangalore C104  customer4 bangalore
+                          C106  customer6 delhi
+
+11 rows selected.
+
+SQL> select a.agent_code,b.agent_name from agent a.agent from b where a.working_area = b.working_area;
+select a.agent_code,b.agent_name from agent a.agent from b where a.working_area = b.working_area
+                                             *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL> select a.agent_code,b.agent_name from agent ,agent from b where a.working_area = b.working_area;
+select a.agent_code,b.agent_name from agent ,agent from b where a.working_area = b.working_area
+                                                   *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL> select a.agent_code,b.agent_name from agent a ,agent b where a.working_area = b.working_area;
+
+AGENT AGENT_NAM
+----- ---------
+A102  agent1
+A101  agent1
+A102  agent2
+A101  agent2
+A104  agent3
+A103  agent3
+A104  agent4
+A103  agent4
+A105  agent5
+
+9 rows selected.
+
+SQL> select *from agent cross join customers;
+
+AGENT AGENT_NAM WORKING_A CUSTO CUSTOMER_ CUSTOMERW
+----- --------- --------- ----- --------- ---------
+A101  agent1    chennai   C101  customer1 chennai
+A101  agent1    chennai   C102  customer2 chennai
+A101  agent1    chennai   C103  customer3 chennai
+A101  agent1    chennai   C104  customer4 bangalore
+A101  agent1    chennai   C105  customer5 bangalore
+A101  agent1    chennai   C106  customer6 delhi
+A102  agent2    chennai   C101  customer1 chennai
+A102  agent2    chennai   C102  customer2 chennai
+A102  agent2    chennai   C103  customer3 chennai
+A102  agent2    chennai   C104  customer4 bangalore
+A102  agent2    chennai   C105  customer5 bangalore
+
+AGENT AGENT_NAM WORKING_A CUSTO CUSTOMER_ CUSTOMERW
+----- --------- --------- ----- --------- ---------
+A102  agent2    chennai   C106  customer6 delhi
+A103  agent3    bangalore C101  customer1 chennai
+A103  agent3    bangalore C102  customer2 chennai
+A103  agent3    bangalore C103  customer3 chennai
+A103  agent3    bangalore C104  customer4 bangalore
+A103  agent3    bangalore C105  customer5 bangalore
+A103  agent3    bangalore C106  customer6 delhi
+A104  agent4    bangalore C101  customer1 chennai
+A104  agent4    bangalore C102  customer2 chennai
+A104  agent4    bangalore C103  customer3 chennai
+A104  agent4    bangalore C104  customer4 bangalore
+
+AGENT AGENT_NAM WORKING_A CUSTO CUSTOMER_ CUSTOMERW
+----- --------- --------- ----- --------- ---------
+A104  agent4    bangalore C105  customer5 bangalore
+A104  agent4    bangalore C106  customer6 delhi
+A105  agent5    new york  C101  customer1 chennai
+A105  agent5    new york  C102  customer2 chennai
+A105  agent5    new york  C103  customer3 chennai
+A105  agent5    new york  C104  customer4 bangalore
+A105  agent5    new york  C105  customer5 bangalore
+A105  agent5    new york  C106  customer6 delhi
+
+30 rows selected.
+
+SQL> select *from customers where customerworking_area = (eselect working_area from agent where agent_code = 'A101');
+select *from customers where customerworking_area = (eselect working_area from agent where agent_code = 'A101')
+                                                             *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> select *from customers where customerworking_area = (select working_area from agent where agent_code = 'A101');
+
+CUSTO CUSTOMER_ CUSTOMERW
+----- --------- ---------
+C101  customer1 chennai
+C102  customer2 chennai
+C103  customer3 chennai
+
+SQL> select *from customers where customerworking_area = (select working_area from agent where agent_code = 'A104');
+
+CUSTO CUSTOMER_ CUSTOMERW
+----- --------- ---------
+C104  customer4 bangalore
+C105  customer5 bangalore
+
+SQL> select *from customers where customerworking_area = (eselect working_area from agent where agent_code = 'A101' or agent_code='A104');
+select *from customers where customerworking_area = (eselect working_area from agent where agent_code = 'A101' or agent_code='A104')
+                                                             *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> select *from customers where customerworking_area = (select working_area from agent where agent_code = 'A101' or agent_code='A104');
+select *from customers where customerworking_area = (select working_area from agent where agent_code = 'A101' or agent_code='A104')
+                                                     *
+ERROR at line 1:
+ORA-01427: single-row subquery returns more than one row
+
+
+SQL> select *from customers where customerworking_area in (select working_area from agent where agent_code = 'A101' or agent_code='A104');
+
+CUSTO CUSTOMER_ CUSTOMERW
+----- --------- ---------
+C103  customer3 chennai
+C102  customer2 chennai
+C101  customer1 chennai
+C105  customer5 bangalore
+C104  customer4 bangalore
+
+SQL>
