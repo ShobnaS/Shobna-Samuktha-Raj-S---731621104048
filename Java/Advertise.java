@@ -26,7 +26,7 @@ class Book {
      public void setISBN(int ISBN){
         this.ISBN = ISBN;
      }
- }
+ } 
  public class Advertise {
      public static void main(String[] args) {
        Scanner sc = new Scanner(System.in);
